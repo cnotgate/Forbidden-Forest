@@ -1,7 +1,8 @@
 <div align="center">
 
 # Forbidden Forest
-### *RPG-Gamified Medical Journey & UKMPPD Preparation Platform*
+
+### _RPG-Gamified Medical Journey & UKMPPD Preparation Platform_
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)](https://react.dev/)
@@ -35,16 +36,16 @@ Medical school and residency preparation require managing hundreds of clinical c
 
 ## Modules & Capabilities
 
-| Module | Description |
-| :--- | :--- |
-| **Markas & Status** | Central command dashboard with interactive journey map, daily habit tracker, XP level progress bar, and clinical milestones. |
-| **Roadmap & Stase** | Rotational department planner (Bedah, Penyakit Dalam, Obgyn, Anak, etc.) tracking case logs, supervisor verifications, and clinical requirements. |
-| **SKDI Matrix** | Comprehensive tracker for 4A competency diseases, diagnostic criteria, and national therapy standards. |
-| **OSCE Station Master** | Simulated clinical exam simulator with dynamic countdown timers, step-by-step physical examination checklists, and scoring rubrics. |
-| **Tryout Diagnostic Hub** | CBT mock exam analytics tracking score trajectories, target margins, and weak-spot subject identification. |
-| **Buku Catatan Kesalahan (Error Book)** | Spaced repetition system for cataloging missed questions, retrospective diagnosis errors, and high-yield clinical pearls. |
-| **Intensif UKMPPD** | Dedicated countdown timer, high-yield drill down, and daily revision timetable. |
-| **Data Portability & Offline Support** | Full JSON backup/export, local storage fallback when disconnected, and instant seed template restoration. |
+| Module                                  | Description                                                                                                                                       |
+| :-------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Markas & Status**                     | Central command dashboard with interactive journey map, daily habit tracker, XP level progress bar, and clinical milestones.                      |
+| **Roadmap & Stase**                     | Rotational department planner (Bedah, Penyakit Dalam, Obgyn, Anak, etc.) tracking case logs, supervisor verifications, and clinical requirements. |
+| **SKDI Matrix**                         | Comprehensive tracker for 4A competency diseases, diagnostic criteria, and national therapy standards.                                            |
+| **OSCE Station Master**                 | Simulated clinical exam simulator with dynamic countdown timers, step-by-step physical examination checklists, and scoring rubrics.               |
+| **Tryout Diagnostic Hub**               | CBT mock exam analytics tracking score trajectories, target margins, and weak-spot subject identification.                                        |
+| **Buku Catatan Kesalahan (Error Book)** | Spaced repetition system for cataloging missed questions, retrospective diagnosis errors, and high-yield clinical pearls.                         |
+| **Intensif UKMPPD**                     | Dedicated countdown timer, high-yield drill down, and daily revision timetable.                                                                   |
+| **Data Portability & Offline Support**  | Full JSON backup/export, local storage fallback when disconnected, and instant seed template restoration.                                         |
 
 ---
 
@@ -88,18 +89,21 @@ flowchart TD
 ## Tech Stack & Architecture Decisions
 
 ### Frontend
+
 - **Framework**: React 18 with TypeScript for type safety and scalability.
 - **Build Tool**: Vite 6 for optimized build times and modern asset bundling.
 - **Styling**: Tailwind CSS with a customized retro warm parchment theme palette designed to eliminate high-contrast glare during extended night study sessions.
 - **Visuals & Feedback**: Lucide React for clean iconography, Canvas Confetti for milestone animations, and Howler.js for retro audio cues.
 
 ### Backend
+
 - **Runtime**: Node.js 20 (LTS).
 - **Framework**: Express.js with TypeScript.
 - **ORM & Database**: Prisma ORM with PostgreSQL 16.
 - **Security**: `bcryptjs` for password hashing, `jsonwebtoken` for stateless auth tokens, `cookie-parser` for secure HTTP-only cookies, and `cors` origin whitelisting.
 
 ### Infrastructure & CI/CD
+
 - **Containerization**: Multi-stage Docker builds and Docker Compose orchestration.
 - **Reverse Proxy**: Nginx configured with gzip compression, security headers, and single-page routing fallback.
 - **CI/CD Pipeline**: GitHub Actions workflow running automated TypeScript linting, build verification, GHCR container publishing, and zero-downtime SSH VPS deployment.
@@ -109,6 +113,7 @@ flowchart TD
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js v20+ and `npm`
 - Docker & Docker Compose (for containerized setup)
 - PostgreSQL v15+ (if running bare metal)
@@ -116,12 +121,14 @@ flowchart TD
 ### Option 1: Quickstart via Docker Compose (Recommended)
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/USERNAME/forbidden-forest.git
    cd forbidden-forest
    ```
 
 2. **Configure environment variables:**
+
    ```bash
    cp .env.example .env
    ```
@@ -130,6 +137,7 @@ flowchart TD
    ```bash
    docker compose up --build -d
    ```
+
    - Frontend will be accessible at: `http://localhost:3080` (or configured port)
    - Backend API at: `http://localhost:5000`
 
@@ -138,6 +146,7 @@ flowchart TD
 ### Option 2: Local Development Setup (Bare Metal)
 
 #### 1. Backend Setup
+
 ```bash
 cd backend
 cp .env.example .env
@@ -151,6 +160,7 @@ npm run dev
 ```
 
 #### 2. Frontend Setup
+
 ```bash
 # Return to root directory
 cd ..
@@ -159,6 +169,7 @@ npm install
 # Start Vite development server
 npm run dev
 ```
+
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
@@ -205,15 +216,6 @@ forbidden-forest/
 - **Zero Credential Leakage**: All `.env` secrets, database passwords, and API keys are strictly excluded from version control via `.gitignore`.
 - **Cookie-Based Token Architecture**: Access tokens are kept in memory/auth headers, while Refresh Tokens are stored strictly in `HttpOnly`, `SameSite=Lax/Strict`, `Secure` cookies to defend against XSS token exfiltration.
 - **Defensive Input Handling**: Sensitive fields are validated and scrubbed before database commits; cross-user synchronization is authenticated and strictly isolated at the database user ID level.
-
----
-
-## Author
-
-**Ahmad Fatih**
-- Institution: Universitas Indonesia (UI)
-- Email: [ahmad.fatih22@ui.ac.id](mailto:ahmad.fatih22@ui.ac.id)
-- GitHub: [@ahmadfatih](https://github.com/)
 
 ---
 
