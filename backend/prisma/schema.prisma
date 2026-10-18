@@ -1,0 +1,234 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String?
+  googleId     String?  @unique
+  fullName     String
+  avatarUrl    String?
+  isOnboarded  Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  dashboard      DashboardSettings?
+  leveling       LevelingState?
+  phases         ClerkshipPhase[]
+  roadmapWeeks   RoadmapWeek[]
+  intensifDays   IntensifDay[]
+  skdiSystems    SkdiSystem[]
+  tryouts        TryoutItem[]
+  errorEntries   ErrorBookItem[]
+  osceSkills     OsceSkill[]
+  habits         HabitItem[]
+  dailyHabitLogs DailyHabitLog[]
+  guidelines     GuidelineItem[]
+
+  @@map("users")
+}
+
+model DashboardSettings {
+  id             String  @id @default(uuid())
+  userId         String  @unique
+  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  startPlanner   String
+  ddayUKMPPD     String
+  targetCBT      Float
+  batasAman      Float
+  modes          Json
+  doctorAvatar   String?
+  doctorNickname String?
+  companionMood  String?
+
+  @@map("dashboard_settings")
+}
+
+model ClerkshipPhase {
+  id            String @id @default(uuid())
+  userId        String
+  user          User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name          String
+  type          String
+  startDate     String
+  endDate       String
+  durationWeeks String
+  status        String
+  mode          String
+  notes         String @default("")
+
+  @@map("clerkship_phases")
+}
+
+model LevelingState {
+  id      String @id @default(uuid())
+  userId  String @unique
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  levels  Json
+  badges  Json
+  xpRules Json
+
+  @@map("leveling_states")
+}
+
+model RoadmapWeek {
+  id              String  @id @default(uuid())
+  userId          String
+  user            User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  weekNum         Int
+  startDate       String
+  endDate         String
+  rotation        String
+  mode            String
+  hoursPerDay     Float
+  questionsPerDay Int
+  weeklyHours     Float
+  weeklyQuestions Int
+  focusA          String
+  focusB          String
+  milestone       String
+  isDone          Boolean @default(false)
+
+  @@unique([userId, weekNum])
+  @@map("roadmap_weeks")
+}
+
+model IntensifDay {
+  id              String  @id @default(uuid())
+  userId          String
+  user            User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  dayNum          Int
+  date            String
+  dayName         String
+  type            String
+  focus           String
+  coreActivity    String
+  targetQuestions Int
+  targetHours     Float
+  isDone          Boolean @default(false)
+  notes           String  @default("")
+
+  @@unique([userId, dayNum])
+  @@map("intensif_days")
+}
+
+model SkdiSystem {
+  id              String  @id @default(uuid())
+  userId          String
+  user            User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  no              Int
+  systemName      String
+  clerkshipSource String
+  status          String
+  pass1Desc       String  @default("")
+  pass2Desc       String  @default("")
+  pass3Desc       String  @default("")
+  skdiNotes       String  @default("")
+  p1Done          Boolean @default(false)
+  p2Done          Boolean @default(false)
+  p3Done          Boolean @default(false)
+
+  @@unique([userId, no])
+  @@map("skdi_systems")
+}
+
+model TryoutItem {
+  id             String  @id @default(uuid())
+  userId         String
+  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  no             Int
+  plannedDate    String
+  context        String
+  source         String
+  questionsCount Int
+  targetScore    Float
+  actualScore    Float?
+  weakTopics     String  @default("")
+  notes          String  @default("")
+
+  @@unique([userId, no])
+  @@map("tryouts")
+}
+
+model ErrorBookItem {
+  id            String  @id @default(uuid())
+  userId        String
+  user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  no            Int
+  date          String
+  source        String
+  system        String
+  topic         String
+  caseSummary   String
+  myAnswer      String
+  correctAnswer String
+  errorType     String
+  reasonWhy     String
+  review1Date   String
+  review7Date   String
+  review30Date  String
+  review1Done   Boolean @default(false)
+  review7Done   Boolean @default(false)
+  review30Done  Boolean @default(false)
+  status        String  @default("Perlu Review")
+
+  @@map("error_book_items")
+}
+
+model OsceSkill {
+  id               String  @id @default(uuid())
+  userId           String
+  user             User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  no               Int
+  category         String
+  skillName        String
+  practiceLocation String  @default("")
+  pahamiDone       Boolean @default(false)
+  soloDone         Boolean @default(false)
+  partnerDone      Boolean @default(false)
+  dinilaiDone      Boolean @default(false)
+  notes            String  @default("")
+
+  @@unique([userId, no])
+  @@map("osce_skills")
+}
+
+model HabitItem {
+  id       String @id @default(uuid())
+  userId   String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name     String
+  priority String
+
+  @@map("habits")
+}
+
+model DailyHabitLog {
+  id         String  @id @default(uuid())
+  userId     String
+  user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date       String
+  level      Int     @default(1)
+  habitsDone Json
+  note       String?
+
+  @@unique([userId, date])
+  @@map("daily_habit_logs")
+}
+
+model GuidelineItem {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic  String
+  detail String
+
+  @@map("guidelines")
+}
+

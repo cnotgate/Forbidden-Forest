@@ -1,0 +1,546 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+  
+  h1, h2, h3, .font-serif {
+    font-family: 'Cinzel', 'Lora', Georgia, serif;
+  }
+}
+
+/* Tasteful warm parchment scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d8cbbb;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0d9488;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #3b3229;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #2dd4bf;
+}
+
+/* Subtle clean card interactions */
+.parchment-card {
+  transition: all 0.2s ease-in-out;
+}
+.parchment-card:hover {
+  transform: translateY(-2px);
+}
+
+/* ========================================================
+   HOGWARTS NOCTURNAL HEALER - COMPREHENSIVE DARK MODE
+   Deep warm midnight castle tones (#12100e) with glowing accents
+   ======================================================== */
+
+.dark {
+  color-scheme: dark;
+}
+
+/* Main App canvas */
+.dark body,
+.dark .min-h-screen {
+  background-color: #12100e !important;
+  color: #ede4d8 !important;
+}
+
+/* Background surfaces */
+.dark .bg-\[\#f5efe4\] {
+  background-color: #12100e !important;
+}
+
+.dark .bg-\[\#faf6ee\] {
+  background-color: #191613 !important;
+}
+
+.dark .bg-\[\#faf6ee\]\/50 {
+  background-color: #191613 !important;
+}
+
+.dark .bg-\[\#fdfcf9\] {
+  background-color: #211c17 !important;
+}
+
+.dark .bg-\[\#eedec0\] {
+  background-color: #2d2015 !important;
+  border-color: #92400e !important;
+  color: #fef3c7 !important;
+}
+
+.dark .bg-\[\#f4faf6\] {
+  background-color: #0c2b20 !important;
+  border-color: #059669 !important;
+}
+
+.dark .bg-white,
+.dark .bg-white\/60,
+.dark .bg-white\/70,
+.dark .bg-white\/80,
+.dark .bg-white\/90 {
+  background-color: #1e1915 !important;
+  border-color: #383028 !important;
+}
+
+.dark .bg-hogwarts-50 {
+  background-color: #211c17 !important;
+}
+
+.dark .bg-hogwarts-100,
+.dark .bg-hogwarts-100\/70,
+.dark .bg-hogwarts-100\/90 {
+  background-color: #2b251f !important;
+}
+
+.dark .bg-hogwarts-200 {
+  background-color: #383028 !important;
+}
+
+.dark .bg-stone-50,
+.dark .bg-stone-50\/80,
+.dark .bg-stone-50\/90,
+.dark .bg-stone-100,
+.dark .bg-stone-200,
+.dark .bg-stone-200\/60,
+.dark .bg-stone-200\/80 {
+  background-color: #1e1915 !important;
+}
+
+/* Borders */
+.dark .border-hogwarts-200,
+.dark .border-hogwarts-200\/80,
+.dark .border-hogwarts-200\/90 {
+  border-color: #332a22 !important;
+}
+
+.dark .border-hogwarts-300 {
+  border-color: #42382e !important;
+}
+
+.dark .border-hogwarts-400 {
+  border-color: #594a3d !important;
+}
+
+.dark .border-stone-300 {
+  border-color: #42382e !important;
+}
+
+/* Core typography colors */
+.dark .text-hogwarts-950 {
+  color: #f7f2ea !important;
+}
+
+.dark .text-hogwarts-900 {
+  color: #ede4d8 !important;
+}
+
+.dark .text-hogwarts-800 {
+  color: #d8cbbb !important;
+}
+
+.dark .text-hogwarts-700 {
+  color: #baa996 !important;
+}
+
+.dark .text-hogwarts-600 {
+  color: #a3917d !important;
+}
+
+.dark .text-hogwarts-500 {
+  color: #8a7866 !important;
+}
+
+.dark .text-stone-950,
+.dark .text-stone-900,
+.dark .text-stone-800 {
+  color: #ede4d8 !important;
+}
+
+.dark .text-stone-700,
+.dark .text-stone-600 {
+  color: #baa996 !important;
+}
+
+.dark .text-stone-500 {
+  color: #8a7866 !important;
+}
+
+/* Form inputs & textareas */
+.dark input[type="text"],
+.dark input[type="number"],
+.dark input[type="date"],
+.dark select,
+.dark textarea {
+  background-color: #211c17 !important;
+  color: #f7f2ea !important;
+  border-color: #42382e !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #8a7866 !important;
+}
+
+input[type="checkbox"] {
+  accent-color: #0f766e;
+}
+
+.dark input[type="checkbox"] {
+  accent-color: #2dd4bf;
+}
+
+/* Buttons in dark mode */
+.dark .hover\:bg-\[\#f5efe4\]:hover {
+  background-color: #2c251f !important;
+}
+
+.dark .hover\:bg-hogwarts-100:hover,
+.dark .hover\:bg-hogwarts-200:hover,
+.dark .hover\:bg-stone-100:hover,
+.dark .hover\:bg-\[\#dfcaa8\]:hover,
+.dark .hover\:bg-white:hover {
+  background-color: #3b2c1d !important;
+}
+
+/* ========================================================
+   THEMATIC ACCENT PALETTES (Dark Luminous Glow)
+   ======================================================== */
+
+/* Tiffany / Teal Accent */
+.dark .bg-tiffany-100,
+.dark .bg-tiffany-200 {
+  background-color: #042f2e !important;
+  color: #5eead4 !important;
+  border-color: #0d9488 !important;
+}
+
+.dark .bg-teal-50,
+.dark .bg-teal-50\/50,
+.dark .bg-teal-50\/70,
+.dark .bg-teal-50\/80,
+.dark .bg-teal-100,
+.dark .bg-teal-100\/90 {
+  background-color: #042f2e !important;
+  border-color: #0d9488 !important;
+}
+
+.dark .bg-teal-200,
+.dark .bg-teal-200\/90,
+.dark .bg-teal-200\/80 {
+  background-color: #115e59 !important;
+  color: #ccfbf1 !important;
+  border-color: #14b8a6 !important;
+}
+
+.dark .text-teal-950,
+.dark .text-teal-900,
+.dark .text-teal-800,
+.dark .text-tiffany-950,
+.dark .text-tiffany-900,
+.dark .text-tiffany-800 {
+  color: #5eead4 !important;
+}
+
+.dark .text-teal-700,
+.dark .text-tiffany-700 {
+  color: #2dd4bf !important;
+}
+
+/* Amber Accent */
+.dark .bg-amber-50,
+.dark .bg-amber-50\/70,
+.dark .bg-amber-50\/80,
+.dark .bg-amber-50\/90,
+.dark .bg-amber-100,
+.dark .bg-amber-100\/70,
+.dark .bg-amber-100\/80,
+.dark .bg-amber-100\/90 {
+  background-color: #451a03 !important;
+  border-color: #d97706 !important;
+}
+
+.dark .bg-amber-200,
+.dark .bg-amber-200\/90,
+.dark .bg-amber-200\/80 {
+  background-color: #78350f !important;
+  color: #fef3c7 !important;
+  border-color: #f59e0b !important;
+}
+
+.dark .text-amber-950,
+.dark .text-amber-900,
+.dark .text-amber-800 {
+  color: #fde68a !important;
+}
+
+.dark .text-amber-700 {
+  color: #fbbf24 !important;
+}
+
+/* Purple Accent */
+.dark .bg-purple-50,
+.dark .bg-purple-50\/70,
+.dark .bg-purple-50\/80,
+.dark .bg-purple-100,
+.dark .bg-purple-100\/90 {
+  background-color: #3b0764 !important;
+  border-color: #9333ea !important;
+}
+
+.dark .bg-purple-200,
+.dark .bg-purple-200\/90,
+.dark .bg-purple-200\/80 {
+  background-color: #581c87 !important;
+  color: #f3e8ff !important;
+  border-color: #a855f7 !important;
+}
+
+.dark .text-purple-950,
+.dark .text-purple-900,
+.dark .text-purple-800 {
+  color: #e9d5ff !important;
+}
+
+.dark .text-purple-700 {
+  color: #c084fc !important;
+}
+
+/* Emerald Accent */
+.dark .bg-emerald-50,
+.dark .bg-emerald-50\/70,
+.dark .bg-emerald-50\/80,
+.dark .bg-emerald-100,
+.dark .bg-emerald-100\/90 {
+  background-color: #022c22 !important;
+  border-color: #059669 !important;
+}
+
+.dark .bg-emerald-200,
+.dark .bg-emerald-200\/90,
+.dark .bg-emerald-200\/80 {
+  background-color: #064e3b !important;
+  color: #d1fae5 !important;
+  border-color: #10b981 !important;
+}
+
+.dark .text-emerald-950,
+.dark .text-emerald-900,
+.dark .text-emerald-800 {
+  color: #a7f3d0 !important;
+}
+
+.dark .text-emerald-700 {
+  color: #34d399 !important;
+}
+
+/* Sky Accent */
+.dark .bg-sky-50,
+.dark .bg-sky-50\/70,
+.dark .bg-sky-50\/80,
+.dark .bg-sky-100,
+.dark .bg-sky-100\/90 {
+  background-color: #082f49 !important;
+  border-color: #0284c7 !important;
+}
+
+.dark .bg-sky-200,
+.dark .bg-sky-200\/90,
+.dark .bg-sky-200\/80 {
+  background-color: #075985 !important;
+  color: #e0f2fe !important;
+  border-color: #38bdf8 !important;
+}
+
+.dark .text-sky-950,
+.dark .text-sky-900,
+.dark .text-sky-800 {
+  color: #bae6fd !important;
+}
+
+.dark .text-sky-700 {
+  color: #38bdf8 !important;
+}
+
+/* Rose Accent */
+.dark .bg-rose-50,
+.dark .bg-rose-100,
+.dark .bg-rose-100\/60,
+.dark .bg-red-50,
+.dark .bg-red-100 {
+  background-color: #4c0519 !important;
+  border-color: #e11d48 !important;
+}
+
+.dark .text-rose-950,
+.dark .text-rose-900,
+.dark .text-rose-800,
+.dark .text-red-950,
+.dark .text-red-900,
+.dark .text-red-800 {
+  color: #fecdd3 !important;
+}
+
+.dark .text-rose-700,
+.dark .text-red-700 {
+  color: #fda4af !important;
+}
+
+.dark .border-rose-300,
+.dark .border-rose-400,
+.dark .border-red-300 {
+  border-color: #be123c !important;
+}
+
+/* Indigo Accent (e.g. OSCE Day) */
+.dark .bg-indigo-50,
+.dark .bg-indigo-100 {
+  background-color: #1e1b4b !important;
+  border-color: #6366f1 !important;
+}
+
+.dark .text-indigo-950,
+.dark .text-indigo-900,
+.dark .text-indigo-800 {
+  color: #c7d2fe !important;
+}
+
+.dark .text-indigo-700 {
+  color: #818cf8 !important;
+}
+
+/* Glowing Interactive Rings in Dark Mode */
+.dark .ring-tiffany-200,
+.dark .ring-tiffany-300,
+.dark .ring-tiffany-400,
+.dark .ring-tiffany-400\/40,
+.dark .ring-tiffany-400\/30 {
+  --tw-ring-color: rgba(45, 212, 191, 0.4) !important;
+}
+
+.dark .ring-emerald-200,
+.dark .ring-emerald-300,
+.dark .ring-emerald-400,
+.dark .ring-emerald-400\/30 {
+  --tw-ring-color: rgba(52, 211, 153, 0.4) !important;
+}
+
+.dark .ring-amber-200,
+.dark .ring-amber-300,
+.dark .ring-amber-400,
+.dark .ring-amber-400\/40,
+.dark .ring-amber-400\/30 {
+  --tw-ring-color: rgba(251, 191, 36, 0.4) !important;
+}
+
+.dark .ring-sky-200,
+.dark .ring-sky-300,
+.dark .ring-sky-400,
+.dark .ring-sky-400\/30 {
+  --tw-ring-color: rgba(56, 189, 248, 0.4) !important;
+}
+
+.dark .ring-purple-200,
+.dark .ring-purple-300,
+.dark .ring-purple-400,
+.dark .ring-purple-400\/40,
+.dark .ring-purple-400\/30 {
+  --tw-ring-color: rgba(192, 132, 252, 0.4) !important;
+}
+
+/* Modals & Backdrops */
+.dark .bg-hogwarts-950\/75 {
+  background-color: rgba(9, 7, 6, 0.88) !important;
+}
+
+/* ========================================================
+   CARD GRADIENTS IN DARK MODE (Deep Atmospheric Jewels)
+   ======================================================== */
+.dark .from-\[\#f2fcf6\],
+.dark .from-\[\#f0fbf5\] {
+  --tw-gradient-from: #09261a var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(9 38 26 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.dark .to-\[\#e4f8ed\],
+.dark .to-\[\#e2f7ec\] {
+  --tw-gradient-to: #0e3827 var(--tw-gradient-to-position) !important;
+}
+
+.dark .from-\[\#fdfcf9\] {
+  --tw-gradient-from: #192623 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(25 38 35 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.dark .to-\[\#f4faf9\] {
+  --tw-gradient-to: #11332f var(--tw-gradient-to-position) !important;
+}
+
+.dark .from-\[\#f0fbf9\],
+.dark .from-\[\#f2fbf9\] {
+  --tw-gradient-from: #082824 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(8 40 36 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.dark .to-\[\#e4f6f3\],
+.dark .to-\[\#e6f7f4\] {
+  --tw-gradient-to: #0e3833 var(--tw-gradient-to-position) !important;
+}
+
+.dark .from-\[\#f2fcf5\] {
+  --tw-gradient-from: #09281a var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(9 40 26 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.dark .to-\[\#e4f8ec\] {
+  --tw-gradient-to: #0e3725 var(--tw-gradient-to-position) !important;
+}
+
+.dark .from-\[\#faf5ff\] {
+  --tw-gradient-from: #220b38 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(34 11 56 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.dark .to-\[\#f3e8ff\] {
+  --tw-gradient-to: #321252 var(--tw-gradient-to-position) !important;
+}
+
+.dark .from-\[\#eef2ff\] {
+  --tw-gradient-from: #141c3d var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(20 28 61 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.dark .to-\[\#e0e7ff\] {
+  --tw-gradient-to: #1c2754 var(--tw-gradient-to-position) !important;
+}
+
+.dark .from-\[\#fffbeb\] {
+  --tw-gradient-from: #331c08 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(51 28 8 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.dark .to-\[\#fef3c7\] {
+  --tw-gradient-to: #48270b var(--tw-gradient-to-position) !important;
+}
+
+.dark .from-\[\#fff7f7\] {
+  --tw-gradient-from: #380c16 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(56 12 22 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.dark .to-\[\#ffeef0\] {
+  --tw-gradient-to: #4c111e var(--tw-gradient-to-position) !important;
+}
