@@ -1,8 +1,7 @@
 <div align="center">
 
-# Doctor Tracker (MedTrack)
-
-### _RPG-Gamified Medical Journey & UKMPPD Preparation Platform_
+# Forbidden Forest
+### *RPG-Gamified Medical Journey & UKMPPD Preparation Platform*
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)](https://react.dev/)
@@ -15,7 +14,7 @@
 [![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?style=flat-square&logo=docker)](https://www.docker.com/)
 
 <p align="center">
-  A fullstack productivity and clinical tracking platform engineered to support Indonesian medical students, clinical clerks (koas), and medical doctors preparing for UKMPPD certification and residency (PPDS). Combines clinical standards compliance with RPG gamification mechanics and granular multi-device synchronization.
+  A fullstack productivity and clinical tracking platform engineered to support Indonesian medical students, clinical clerks (koas), and medical doctors preparing for UKMPPD certification and residency (PPDS). Combines clinical standards compliance with Hogwarts-inspired RPG gamification mechanics and granular multi-device synchronization.
 </p>
 
 </div>
@@ -24,7 +23,7 @@
 
 ## Overview
 
-Medical school and residency preparation require managing hundreds of clinical competencies, Objective Structured Clinical Examinations (OSCE), rotational clinical stases, and computer-based test (CBT) mock exams. **Doctor Tracker** addresses this complexity by merging clinical-grade tracking with gamification mechanics:
+Medical school and residency preparation require managing hundreds of clinical competencies, Objective Structured Clinical Examinations (OSCE), rotational clinical stases, and computer-based test (CBT) mock exams. **Forbidden Forest** addresses this complexity by merging clinical-grade tracking with gamification mechanics:
 
 - **Indonesian Medical Education Standards**: Native alignment with SKDI 4A competency diseases, clinical rotations, OSCE procedural rubrics, and UKMPPD score targets.
 - **Gamification Mechanics**: Experience points (XP) calculation based on completed clinical tasks, milestone progression (Co-Assistant to Specialist Doctor), daily study streaks with freeze mechanisms, companion dialogues, and auditory feedback.
@@ -36,16 +35,16 @@ Medical school and residency preparation require managing hundreds of clinical c
 
 ## Modules & Capabilities
 
-| Module                                  | Description                                                                                                                                       |
-| :-------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Markas & Status**                     | Central command dashboard with interactive journey map, daily habit tracker, XP level progress bar, and clinical milestones.                      |
-| **Roadmap & Stase**                     | Rotational department planner (Bedah, Penyakit Dalam, Obgyn, Anak, etc.) tracking case logs, supervisor verifications, and clinical requirements. |
-| **SKDI Matrix**                         | Comprehensive tracker for 4A competency diseases, diagnostic criteria, and national therapy standards.                                            |
-| **OSCE Station Master**                 | Simulated clinical exam simulator with dynamic countdown timers, step-by-step physical examination checklists, and scoring rubrics.               |
-| **Tryout Diagnostic Hub**               | CBT mock exam analytics tracking score trajectories, target margins, and weak-spot subject identification.                                        |
-| **Buku Catatan Kesalahan (Error Book)** | Spaced repetition system for cataloging missed questions, retrospective diagnosis errors, and high-yield clinical pearls.                         |
-| **Intensif UKMPPD**                     | Dedicated countdown countdown timer, high-yield drill down, and daily revision timetable.                                                         |
-| **Data Portability & Offline Support**  | Full JSON backup/export, local storage fallback when disconnected, and instant seed template restoration.                                         |
+| Module | Description |
+| :--- | :--- |
+| **Markas & Status** | Central command dashboard with interactive journey map, daily habit tracker, XP level progress bar, and clinical milestones. |
+| **Roadmap & Stase** | Rotational department planner (Bedah, Penyakit Dalam, Obgyn, Anak, etc.) tracking case logs, supervisor verifications, and clinical requirements. |
+| **SKDI Matrix** | Comprehensive tracker for 4A competency diseases, diagnostic criteria, and national therapy standards. |
+| **OSCE Station Master** | Simulated clinical exam simulator with dynamic countdown timers, step-by-step physical examination checklists, and scoring rubrics. |
+| **Tryout Diagnostic Hub** | CBT mock exam analytics tracking score trajectories, target margins, and weak-spot subject identification. |
+| **Buku Catatan Kesalahan (Error Book)** | Spaced repetition system for cataloging missed questions, retrospective diagnosis errors, and high-yield clinical pearls. |
+| **Intensif UKMPPD** | Dedicated countdown timer, high-yield drill down, and daily revision timetable. |
+| **Data Portability & Offline Support** | Full JSON backup/export, local storage fallback when disconnected, and instant seed template restoration. |
 
 ---
 
@@ -89,21 +88,18 @@ flowchart TD
 ## Tech Stack & Architecture Decisions
 
 ### Frontend
-
 - **Framework**: React 18 with TypeScript for type safety and scalability.
 - **Build Tool**: Vite 6 for optimized build times and modern asset bundling.
 - **Styling**: Tailwind CSS with a customized retro warm parchment theme palette designed to eliminate high-contrast glare during extended night study sessions.
 - **Visuals & Feedback**: Lucide React for clean iconography, Canvas Confetti for milestone animations, and Howler.js for retro audio cues.
 
 ### Backend
-
 - **Runtime**: Node.js 20 (LTS).
 - **Framework**: Express.js with TypeScript.
 - **ORM & Database**: Prisma ORM with PostgreSQL 16.
 - **Security**: `bcryptjs` for password hashing, `jsonwebtoken` for stateless auth tokens, `cookie-parser` for secure HTTP-only cookies, and `cors` origin whitelisting.
 
 ### Infrastructure & CI/CD
-
 - **Containerization**: Multi-stage Docker builds and Docker Compose orchestration.
 - **Reverse Proxy**: Nginx configured with gzip compression, security headers, and single-page routing fallback.
 - **CI/CD Pipeline**: GitHub Actions workflow running automated TypeScript linting, build verification, GHCR container publishing, and zero-downtime SSH VPS deployment.
@@ -113,7 +109,6 @@ flowchart TD
 ## Getting Started
 
 ### Prerequisites
-
 - Node.js v20+ and `npm`
 - Docker & Docker Compose (for containerized setup)
 - PostgreSQL v15+ (if running bare metal)
@@ -121,24 +116,20 @@ flowchart TD
 ### Option 1: Quickstart via Docker Compose (Recommended)
 
 1. **Clone the repository:**
-
    ```bash
-   git clone https://github.com/USERNAME/doctor-tracker.git
-   cd doctor-tracker
+   git clone https://github.com/USERNAME/forbidden-forest.git
+   cd forbidden-forest
    ```
 
 2. **Configure environment variables:**
-
    ```bash
    cp .env.example .env
    ```
 
 3. **Launch the fullstack application:**
-
    ```bash
    docker compose up --build -d
    ```
-
    - Frontend will be accessible at: `http://localhost:3080` (or configured port)
    - Backend API at: `http://localhost:5000`
 
@@ -147,7 +138,6 @@ flowchart TD
 ### Option 2: Local Development Setup (Bare Metal)
 
 #### 1. Backend Setup
-
 ```bash
 cd backend
 cp .env.example .env
@@ -161,7 +151,6 @@ npm run dev
 ```
 
 #### 2. Frontend Setup
-
 ```bash
 # Return to root directory
 cd ..
@@ -170,7 +159,6 @@ npm install
 # Start Vite development server
 npm run dev
 ```
-
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
@@ -178,7 +166,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 ## Repository Structure
 
 ```text
-doctor-tracker/
+forbidden-forest/
 ├── .github/workflows/         # CI/CD deployment automation (GitHub Actions)
 ├── backend/                   # Express.js REST API & Database Service
 │   ├── prisma/                # Prisma schema & database migration history
@@ -222,9 +210,10 @@ doctor-tracker/
 
 ## Author
 
-### Ahmad Fatih Faizi
-
-- GitHub: [@cnotgate](https://github.com/cnotgate)
+**Ahmad Fatih**
+- Institution: Universitas Indonesia (UI)
+- Email: [ahmad.fatih22@ui.ac.id](mailto:ahmad.fatih22@ui.ac.id)
+- GitHub: [@ahmadfatih](https://github.com/)
 
 ---
 
