@@ -102,8 +102,11 @@ jobs:
             fi
             echo "📦 Using Compose file: $COMPOSE_FILE"
 
-            # Pull latest images from Docker Hub
-            docker compose -f "$COMPOSE_FILE" pull
+            # Pull only application images (backend & frontend) with retry
+            for i in 1 2 3; do
+              echo "Attempt $i to pull images..."
+              docker compose -f "$COMPOSE_FILE" pull backend frontend && break || sleep 5
+            done
 
             # Run database migrations
             docker compose -f "$COMPOSE_FILE" run --rm backend npx prisma migrate deploy || true
