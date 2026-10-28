@@ -67,6 +67,8 @@ jobs:
           context: .
           file: ./Dockerfile.frontend
           push: true
+          build-args: |
+            VITE_GOOGLE_CLIENT_ID=${{ secrets.VITE_GOOGLE_CLIENT_ID }}
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/doctor-tracker-frontend:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/doctor-tracker-frontend:${{ github.sha }}
