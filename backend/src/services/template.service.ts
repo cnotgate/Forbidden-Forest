@@ -662,26 +662,38 @@ export async function importFullUserState(userId: string, data: any) {
     if (Array.isArray(data.habits)) {
       await tx.habitItem.deleteMany({ where: { userId } });
       await tx.habitItem.createMany({
-        data: data.habits.map((h: any) => ({
-          ...(h.id ? { id: h.id } : {}),
-          userId,
-          name: h.name,
-          priority: h.priority
-        }))
+        data: data.habits.map((h: any) => {
+          // Canonical IDs ("habit-1".."habit-15") are shared across users on the frontend;
+          // let Prisma generate a per-user UUID so multiple accounts don't collide on HabitItem.id.
+          const isCanonicalId = typeof h.id === 'string' && /^habit-\d{1,2}$/.test(h.id);
+          return {
+            ...(h.id && !isCanonicalId ? { id: h.id } : {}),
+            userId,
+            name: h.name,
+            priority: h.priority
+          };
+        })
       });
     }
 
     // 10. Daily Habit Logs
     if (data.dailyHabitLogs && typeof data.dailyHabitLogs === 'object') {
       await tx.dailyHabitLog.deleteMany({ where: { userId } });
-      const logs = Object.values(data.dailyHabitLogs) as any[];
+      const rawLogs = Object.values(data.dailyHabitLogs) as any[];
+      const uniqueLogsByDate = new Map<string, any>();
+      for (const log of rawLogs) {
+        if (log && typeof log.date === 'string' && log.date) {
+          uniqueLogsByDate.set(log.date, log);
+        }
+      }
+      const logs = Array.from(uniqueLogsByDate.values());
       if (logs.length > 0) {
         await tx.dailyHabitLog.createMany({
           data: logs.map((log: any) => ({
             userId,
             date: log.date,
-            level: log.level || 1,
-            habitsDone: log.habitsDone || [],
+            level: typeof log.level === 'number' ? log.level : 1,
+            habitsDone: Array.isArray(log.habitsDone) ? log.habitsDone : [],
             note: log.note || null
           }))
         });
