@@ -60,6 +60,16 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+      # Verify VITE_GOOGLE_CLIENT_ID secret is configured
+      - name: Verify Frontend Secrets
+        env:
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+        run: |
+          if [ -z "$VITE_GOOGLE_CLIENT_ID" ]; then
+            echo "❌ Secret VITE_GOOGLE_CLIENT_ID kosong! Pastikan tersimpan di Repository secrets."
+            exit 1
+          fi
+
       # Build & Push Frontend to Docker Hub
       - name: Build & Push Frontend
         uses: docker/build-push-action@v5
@@ -101,9 +111,20 @@ jobs:
             # Prefer IPv4 to avoid IPv6 handshake timeout on VPS
             sudo sed -i 's/#precedence ::ffff:0:0\/96  100/precedence ::ffff:0:0\/96  100/' /etc/gai.conf 2>/dev/null || true
 
-            # Login to Docker Hub on VPS to prevent rate limiting & timeouts
-            if [ -n "$DOCKERHUB_TOKEN" ]; then
-              echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            # Sync DOCKERHUB_USER with GitHub secret
+            if [ -n "$DOCKERHUB_USERNAME" ]; then
+              export DOCKERHUB_USER="$DOCKERHUB_USERNAME"
+            fi
+
+            # Login to Docker Hub on VPS to prevent rate limiting (with retry, non-fatal)
+            if [ -n "$DOCKERHUB_TOKEN" ] && [ -n "$DOCKERHUB_USERNAME" ]; then
+              for i in 1 2 3; do
+                if echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin; then
+                  break
+                fi
+                echo "⚠️ Docker login attempt $i gagal, mencoba ulang..."
+                sleep 3
+              done
             fi
 
             # Auto-detect compose file name
